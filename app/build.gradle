@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'org.pibooth.android'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId 'org.pibooth.android'
@@ -21,6 +21,14 @@ android {
         }
     }
 
+    // Bibliothèques natives (CameraX) non compressées et alignées sur 16 Ko,
+    // nécessaire pour les appareils Android 15+ à pages mémoire de 16 Ko.
+    packaging {
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -28,7 +36,7 @@ android {
 }
 
 dependencies {
-    def camerax = '1.3.4'
+    def camerax = '1.4.2'
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.preference:preference:1.2.1'
